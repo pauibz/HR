@@ -53,12 +53,23 @@
 
     <button onclick="openHR()">Abrir Sage HR</button>
   </div>
+<script>
+  let isInTeams = false;
 
-  <script>
-    function openHR() {
+  microsoftTeams.app.initialize().then(() => {
+    isInTeams = true;
+  }).catch(() => {
+    isInTeams = false;
+  });
+
+  function openHR() {
+    if (isInTeams) {
       microsoftTeams.app.openLink("https://redman.sage.hr");
+    } else {
+      window.open("https://redman.sage.hr", "_blank");
     }
-  </script>
+  }
+</script>
 
 </body>
 </html>
